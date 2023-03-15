@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import { nanoid } from 'nanoid';
 import { ImageGalleryItem } from './ImageGalleryItem';
 import { StyledImageGallery } from './ImageGallery.styled';
 
@@ -7,7 +7,7 @@ export const ImageGallery = ({ images }) => {
   return (
     <StyledImageGallery>
       {images.map(image => (
-        <ImageGalleryItem key={image.id} image={image} />
+        <ImageGalleryItem key={nanoid()} image={image} />
       ))}
     </StyledImageGallery>
   );
