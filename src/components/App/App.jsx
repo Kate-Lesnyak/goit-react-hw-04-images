@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Notify } from 'notiflix';
+import { nanoid } from 'nanoid';
 import { animateScroll as scroll } from 'react-scroll';
 import { fetchImages } from 'services/api';
 
@@ -20,6 +21,7 @@ export const App = () => {
   const [showBtn, setShowBtn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [reqId, setReqId] = useState(null);
 
   useEffect(() => {
     if (!searchValue) {
@@ -50,10 +52,11 @@ export const App = () => {
       })
       .catch(error => setError(error.message))
       .finally(() => setIsLoading(false));
-  }, [searchValue, page]);
+  }, [searchValue, page, reqId]);
 
-  const handleSubmit = searchValue => {
-    setSearchValue(searchValue);
+  const handleSubmit = newValue => {
+    setSearchValue(newValue);
+    setReqId(nanoid());
     setPage(1);
     setImages([]);
     setShowBtn(false);
