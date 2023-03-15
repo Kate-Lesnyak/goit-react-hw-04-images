@@ -73,16 +73,20 @@ export const App = () => {
         {/* {isLoading ? <Loader /> : <ImageGallery images={images} />} */}
 
         <ImageGallery images={images} />
-
         {showBtn && (
           <Button onClick={handleLoadMore} aria-label="Load more">
             Load more
           </Button>
         )}
-
         {isLoading && <Loader />}
 
-        {error && <ImageError message={error} />}
+        {/* {error && <ImageError message={error} />} */}
+
+        {error && (
+          <ImageError
+            message={`Sorry, but the ${searchValue} was not found. Please try again later!`}
+          />
+        )}
       </StyledApp>
     </main>
   );
